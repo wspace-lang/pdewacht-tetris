@@ -1,4 +1,4 @@
-// Copyright 2020-2022 Andrew Archibald. Licensed under the MIT License.
+// Copyright 2020-2022 Thalia Archibald. Licensed under the MIT License.
 
 // Command tetrisrun is a driver for Peter De Wachter's Whitespace
 // Tetris game. It introduces gravity and provides several key mappings.
