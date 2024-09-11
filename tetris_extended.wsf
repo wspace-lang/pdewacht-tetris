@@ -1,5 +1,5 @@
 # Copyright 2008 Peter De Wachter
-# Copyright 2020-2022 Thalia Archibald
+# Copyright 2020-2024 Thalia Archibald
 
 # Heap usage:
 #   0-111   piece rotations
@@ -188,11 +188,26 @@
     ^ 'k'  j= .game_loop__move_down
     ^ 'l'  j= .game_loop__move_right
     ^ 'o'  j= .game_loop__drop
-    ^ '\e' j= .game_loop__quit
+    ^ '\e' j= .game_loop__escape
     drop
 .game_loop__no_move:
     2drop
     jmp .game_loop__read_key
+
+# Handle \e[A, \e[B, \e[C, and \e[D arrow keys; otherwise quit.
+.game_loop__escape:
+    drop
+    149 ^ readc retrieve
+    ^ '[' j= .game_loop__escape_arrow
+    jmp .game_loop__quit
+.game_loop__escape_arrow:
+    drop
+    149 ^ readc retrieve
+    ^ 'A' j= .game_loop__rotate
+    ^ 'B' j= .game_loop__move_down
+    ^ 'C' j= .game_loop__move_right
+    ^ 'D' j= .game_loop__move_left
+    jmp .game_loop__quit
 
 .game_loop__rotate:
     drop ^ 16/ 16* swap 4+ 16% +
