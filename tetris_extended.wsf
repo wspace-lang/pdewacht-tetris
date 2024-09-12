@@ -144,9 +144,11 @@
     drop
 
     # Read the supported color depth
+    "Color depth (16/256/24): " prints
     147 readi
 
     # Read the random seed
+    "Seed (integer): " prints
     148
     ^ readi
     ^ retrieve
